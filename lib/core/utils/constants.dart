@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Constants {
@@ -11,6 +10,6 @@ class Constants {
         gravity: ToastGravity.BOTTOM,
         backgroundColor: failed ? Colors.red : Colors.green,
         textColor: Colors.white,
-        fontSize: 16.0.sp);
+        fontSize: 12.0);
   }
 }
