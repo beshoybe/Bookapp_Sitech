@@ -1,5 +1,6 @@
 import 'package:booksapp/config/routes/app_routes.dart';
 import 'package:booksapp/config/themes/app_theme.dart';
+import 'package:booksapp/core/utils/app_strings.dart';
 import 'package:booksapp/features/home/presentation/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +28,7 @@ class BooksApp extends StatelessWidget {
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Books App',
+            title: AppStrings.appTitle,
             theme: appTheme(),
             routes: routes,
             home: child,

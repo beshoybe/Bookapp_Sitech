@@ -1,5 +1,3 @@
-import 'package:booksapp/core/utils/app_colors.dart';
-import 'package:flash/flash.dart' as fl;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';

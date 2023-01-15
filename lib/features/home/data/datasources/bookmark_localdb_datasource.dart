@@ -1,10 +1,8 @@
-import '../../../../core/api/api_consumer.dart';
 import '../../../../core/local_db/db_consumer.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/images_manager.dart';
 import '../../domain/entities/book.dart';
 import '../models/book_model.dart';
-import 'books_localdb_datasource.dart';
 
 abstract class BookmarkLocalDbDataSource {
   Future<List<Book>> getBookmarkeBdooks();
@@ -19,9 +17,9 @@ class BookmarkLocalDataSourceImpl implements BookmarkLocalDbDataSource {
   Future<int?> bookmarkBook({required Book book}) async {
     final Map<String, dynamic> newBook = Map.of(book.mapData);
     await ImagesManager.fileFromImageUrl(
-            newBook['cover'], newBook["id"].toString())
+            newBook[AppStrings.cover], newBook[AppStrings.id].toString())
         .then((value) {
-      newBook['cover'] = value.path;
+      newBook[AppStrings.cover] = value.path;
     });
     return await dbConsumer.insert(
         tableName: AppStrings.bookmarksTable, data: newBook);
@@ -33,7 +31,7 @@ class BookmarkLocalDataSourceImpl implements BookmarkLocalDbDataSource {
     List response = await dbConsumer.get(tableName: AppStrings.bookmarksTable);
     response.forEach((element) {
       final Map<String, dynamic> newBook = Map.of(element);
-      newBook['id'] = newBook['id'].toString();
+      newBook[AppStrings.id] = newBook[AppStrings.id].toString();
       books.add(BookModel.fromJson(newBook));
     });
     return books;

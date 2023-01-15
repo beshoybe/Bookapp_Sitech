@@ -1,6 +1,5 @@
 import 'package:booksapp/core/errors/exceptions.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:sqflite/sqlite_api.dart';
 
 abstract class DBConsumer {
   Future get(

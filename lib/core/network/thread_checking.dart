@@ -1,3 +1,4 @@
+import 'package:booksapp/core/utils/app_strings.dart';
 import 'package:booksapp/core/utils/constants.dart';
 
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -9,9 +10,11 @@ void checkConnectivity(int id) async {
   while (true) {
     if (!(await networkInfo.hasConnection) && restored) {
       restored = false;
-      Constants.toastShow(message: "No internet connection", failed: true);
+      Constants.toastShow(
+          message: AppStrings.noInternetConnection, failed: true);
     } else if ((await networkInfo.hasConnection) && restored == false) {
-      Constants.toastShow(message: "Connection Restored", failed: false);
+      Constants.toastShow(
+          message: AppStrings.connectionRestored, failed: false);
       restored = true;
     }
     await Future.delayed(Duration(seconds: 1));

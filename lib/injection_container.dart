@@ -1,5 +1,4 @@
 import 'package:booksapp/core/local_db/db_consumer.dart';
-import 'package:booksapp/core/network/thread_checking.dart';
 import 'package:booksapp/features/home/data/datasources/bookmark_localdb_datasource.dart';
 import 'package:booksapp/features/home/data/datasources/books_localdb_datasource.dart';
 import 'package:booksapp/features/home/data/datasources/books_remote_datasource.dart';
@@ -18,7 +17,6 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
-import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
@@ -73,7 +71,6 @@ Future<void> init() async {
   sl.registerLazySingleton<DBConsumer>(() => DBConsumerImpl(db: sl()));
 
   ///external
-  //sl.registerLazySingleton(() => http.Client());
   sl.registerLazySingleton(() => AppIntercepters());
   sl.registerLazySingleton(() => LogInterceptor(
       request: true,

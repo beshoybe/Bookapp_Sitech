@@ -1,10 +1,8 @@
 import 'package:booksapp/core/errors/failures.dart';
 import 'package:booksapp/core/local_db/db_consumer.dart';
 import 'package:booksapp/core/utils/app_strings.dart';
-import 'package:booksapp/core/utils/images_manager.dart';
 import 'package:booksapp/features/home/data/models/book_model.dart';
 import 'package:booksapp/features/home/domain/entities/book.dart';
-import 'package:dartz/dartz.dart';
 
 abstract class BooksLocalDbDataSource {
   Future<List<Book>> getSavedBooks();
@@ -27,7 +25,7 @@ class BooksLocalDbDataSourceImpl implements BooksLocalDbDataSource {
     List response = await dbConsumer.get(tableName: AppStrings.booksTable);
     for (int i = 0; i < response.length; i++) {
       final Map<String, dynamic> newBook = Map.of(response[i]);
-      newBook['id'] = newBook["id"].toString();
+      newBook[AppStrings.id] = newBook[AppStrings.id].toString();
       books.add(BookModel.fromJson(newBook));
     }
     return books;

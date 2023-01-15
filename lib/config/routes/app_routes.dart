@@ -9,7 +9,7 @@ class Routes {
 }
 
 final routes = {
-  Routes.initialRoute: (context) => HomeScreen(),
+  Routes.initialRoute: (context) => const HomeScreen(),
   Routes.detailsRoute: (context) => const BookDetails(),
-  Routes.bookmarks: (context) => BookmarkedBooks(),
+  Routes.bookmarks: (context) => const BookmarkedBooks(),
 };

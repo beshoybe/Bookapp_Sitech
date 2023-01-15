@@ -5,12 +5,12 @@ Widget errorWidget({required Function onPressed}) {
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("An error occured"),
+        const Text("An error occured"),
         ElevatedButton(
             onPressed: () {
               onPressed();
             },
-            child: Text("Try again"))
+            child: const Text("Try again"))
       ],
     ),
   );

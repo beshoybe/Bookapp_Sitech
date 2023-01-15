@@ -1,4 +1,5 @@
 import 'package:booksapp/core/usecases/usecases.dart';
+import 'package:booksapp/core/utils/app_strings.dart';
 import 'package:booksapp/core/utils/constants.dart';
 import 'package:booksapp/features/home/domain/entities/book.dart';
 import 'package:booksapp/features/home/domain/usecases/add_bookmark_book.dart';
@@ -48,7 +49,6 @@ class HomeCubit extends Cubit<HomeState> {
   final ScrollController listViewController = ScrollController();
   int? selectedBook;
   Future<void> getBooks() async {
-    print("page is $page");
     isLoading = true;
     errorOcurred = false;
     emit(LoadingAllBooksState());
@@ -62,12 +62,14 @@ class HomeCubit extends Cubit<HomeState> {
     }, (books) {
       if (books.isEmpty && page > 1) {
         page -= 1;
-        Constants.toastShow(message: "No more books", failed: false);
+        Constants.toastShow(message: AppStrings.noMoreBooks, failed: false);
       } else if (allBooks.isNotEmpty && page == 1) {
         allBooks.clear();
-        Constants.toastShow(message: "Reload Successfully", failed: false);
+        Constants.toastShow(
+            message: AppStrings.relaodSuccessfully, failed: false);
       } else if (allBooks.isNotEmpty && page > 1) {
-        Constants.toastShow(message: "Loaded More Successfully", failed: false);
+        Constants.toastShow(
+            message: AppStrings.loadedMoreSuccessfully, failed: false);
       }
       allBooks.addAll(books);
       isLoading = false;
@@ -134,7 +136,6 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void connectionCheckThread() async {
-    print("Start check");
     await FlutterIsolate.spawn(checkConnectivity, 2);
   }
 
@@ -144,7 +145,7 @@ class HomeCubit extends Cubit<HomeState> {
     Either<Failure, List<Book>> response =
         await getBookmarkedBooksUseCase(NoParams());
     response.fold((failure) {
-      Constants.toastShow(message: "Error Occured", failed: true);
+      Constants.toastShow(message: AppStrings.errorOcurred, failed: true);
       gettingBookMark = false;
       emit(ErrorLoadingBookmarksState());
     }, (books) {
@@ -155,7 +156,6 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void bookmarkBook(Book book) async {
-    print("Saving bookmark");
     isBookmarked = true;
     emit(AddToBookmarkState());
     await bookmarkBookUseCase(book).then((value) {
@@ -164,7 +164,6 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void removeBookmark(int id) async {
-    print("Removing bookmark");
     isBookmarked = false;
     emit(RemoveBookmarkState());
     await removeBookmarkedBookUseCase(id).then((value) {
@@ -189,14 +188,16 @@ class HomeCubit extends Cubit<HomeState> {
     emit(LoadingDeleteBookState());
     await deleteBookByIdUseCase(id).then((value) {
       value.fold((failure) {
-        Constants.toastShow(message: "Error Deleting Book", failed: true);
+        Constants.toastShow(
+            message: AppStrings.errorDeletingBook, failed: true);
         isLoading = false;
         emit(ErrorLoadingDeleteBookState());
       }, (r) async {
         if (isBookmarked) {
           removeBookmark(id);
         }
-        Constants.toastShow(message: "Book Deleted Successfuly", failed: false);
+        Constants.toastShow(
+            message: AppStrings.bookDeleteSucess, failed: false);
         page = 1;
         getBooks();
       });

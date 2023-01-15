@@ -4,7 +4,6 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/usecases/usecases.dart';
 import '../entities/book.dart';
-import '../repositories/books_repository.dart';
 
 class GetBookmarkedBooks implements UseCase<List<Book>, NoParams> {
   final BookmarkRepository repository;

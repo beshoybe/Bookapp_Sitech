@@ -1,14 +1,13 @@
 import 'dart:math';
 
+import 'package:booksapp/core/utils/app_strings.dart';
 import 'package:booksapp/core/utils/constants.dart';
 import 'package:booksapp/features/home/data/datasources/books_localdb_datasource.dart';
 import 'package:booksapp/features/home/data/datasources/books_remote_datasource.dart';
-import 'package:booksapp/features/home/data/models/book_model.dart';
 import 'package:booksapp/features/home/domain/entities/book.dart';
 import 'package:booksapp/features/home/domain/repositories/books_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
@@ -35,7 +34,7 @@ class BookRepositoryImpl implements BookRepository {
         return Left(ServerError(message: exception.toString()));
       }
     } else {
-      Constants.toastShow(message: "No Internet Connection");
+      Constants.toastShow(message: AppStrings.noInternetConnection);
       if (page == 1) {
         try {
           final localBooks = await booksLocalDbDataSource.getSavedBooks();

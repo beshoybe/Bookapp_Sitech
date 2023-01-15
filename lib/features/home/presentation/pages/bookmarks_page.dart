@@ -3,8 +3,6 @@ import 'package:booksapp/core/utils/app_strings.dart';
 import 'package:booksapp/features/home/presentation/cubit/home_cubit.dart';
 import 'package:booksapp/features/home/presentation/widgets/book_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,15 +16,15 @@ class BookmarkedBooks extends StatelessWidget {
       return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Bookmarks",
-            style: TextStyle(color: Colors.black),
+            AppStrings.bookmarksTable,
+            style: const TextStyle(color: Colors.black),
           ),
           centerTitle: true,
           leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back,
                 color: Colors.black,
               )),
@@ -36,7 +34,7 @@ class BookmarkedBooks extends StatelessWidget {
                 child: Text(AppStrings.noBookmarks),
               )
             : cubit.gettingBookMark
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(),
                   )
                 : RefreshIndicator(

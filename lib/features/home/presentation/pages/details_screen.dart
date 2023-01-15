@@ -1,4 +1,3 @@
-import 'package:booksapp/features/home/domain/entities/book.dart';
 import 'package:booksapp/features/home/presentation/cubit/home_cubit.dart';
 import 'package:booksapp/features/home/presentation/widgets/app_bar.dart';
 import 'package:booksapp/features/home/presentation/widgets/details_widget.dart';
@@ -22,11 +21,11 @@ class _BookDetailsState extends State<BookDetails> {
 
       return Scaffold(
         body: SafeArea(
-            child: Container(
+            child: SizedBox(
                 width: double.infinity.w,
                 height: double.infinity.h,
                 child: cubit.isLoadingBook
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(),
                       )
                     : cubit.currentBook == null

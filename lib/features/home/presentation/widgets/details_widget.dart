@@ -33,7 +33,7 @@ Widget detailsWidget(
                   delete();
                 },
                 color: Colors.red,
-                icon: Icon(
+                icon: const Icon(
                   Icons.delete,
                 ),
               ),
@@ -43,7 +43,7 @@ Widget detailsWidget(
                   onPressed();
                 },
                 color: isBookmarked ? Colors.yellow : Colors.grey,
-                icon: Icon(
+                icon: const Icon(
                   Icons.bookmark_sharp,
                 ),
               )

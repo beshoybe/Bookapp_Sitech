@@ -1,6 +1,5 @@
 import 'package:booksapp/features/home/domain/entities/book.dart';
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 
 import '../../../../core/errors/failures.dart';
 

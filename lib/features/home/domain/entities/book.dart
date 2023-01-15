@@ -1,3 +1,4 @@
+import 'package:booksapp/core/utils/app_strings.dart';
 import 'package:equatable/equatable.dart';
 
 class Book extends Equatable {
@@ -20,11 +21,11 @@ class Book extends Equatable {
   // TODO: implement props
   List<Object?> get props => [createdAt, name, cover, author, description, id];
   Map<String, Object?> get mapData => {
-        "createdAt": createdAt.toIso8601String(),
-        "name": name,
-        "cover": cover,
-        "author": author,
-        "description": description,
-        "id": id.toString(),
+        AppStrings.createdAt: createdAt.toIso8601String(),
+        AppStrings.name: name,
+        AppStrings.cover: cover,
+        AppStrings.author: author,
+        AppStrings.description: description,
+        AppStrings.id: id.toString(),
       };
 }

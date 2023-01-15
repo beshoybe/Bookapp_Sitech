@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:booksapp/core/utils/app_strings.dart';
 import 'package:booksapp/features/home/domain/entities/book.dart';
 
 BookModel? bookModelFromJson(String str) =>
@@ -30,20 +31,20 @@ class BookModel extends Book {
             description: description);
 
   factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
-        createdAt: DateTime.parse(json["createdAt"]),
-        name: json["name"],
-        cover: json["cover"],
-        author: json["author"],
-        description: json["description"],
-        id: int.parse(json["id"]),
+        createdAt: DateTime.parse(json[AppStrings.createdAt]),
+        name: json[AppStrings.name],
+        cover: json[AppStrings.cover],
+        author: json[AppStrings.author],
+        description: json[AppStrings.description],
+        id: int.parse(json[AppStrings.id]),
       );
 
   Map<String, dynamic> toJson() => {
-        "createdAt": createdAt.toIso8601String(),
-        "name": name,
-        "cover": cover,
-        "author": author,
-        "description": description,
-        "id": id.toString(),
+        AppStrings.createdAt: createdAt.toIso8601String(),
+        AppStrings.name: name,
+        AppStrings.cover: cover,
+        AppStrings.author: author,
+        AppStrings.description: description,
+        AppStrings.id: id.toString(),
       };
 }

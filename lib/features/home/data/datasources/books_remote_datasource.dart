@@ -1,4 +1,3 @@
-import 'package:booksapp/core/local_db/db_consumer.dart';
 import 'package:booksapp/core/utils/app_strings.dart';
 import 'package:booksapp/core/utils/images_manager.dart';
 import 'package:booksapp/features/home/data/datasources/books_localdb_datasource.dart';
@@ -30,9 +29,10 @@ class BooksRemoteDataSourceImpl implements BooksRemoteDataSource {
 
       final Map<String, dynamic> newBook = Map.of(item);
 
-      await ImagesManager.fileFromImageUrl(newBook['cover'], newBook['id'])
+      await ImagesManager.fileFromImageUrl(
+              newBook[AppStrings.cover], newBook[AppStrings.id])
           .then((value) {
-        newBook['cover'] = value.path;
+        newBook[AppStrings.cover] = value.path;
       });
 
       await dbDataSource.saveBook(book: BookModel.fromJson(newBook));
